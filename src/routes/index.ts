@@ -26,7 +26,7 @@ const routes: RouteObject[] = [
     Component: DefaultLayout,
     children: [
       {
-        path: "home",
+        index: true,
         Component: Sidebar,
       },
       {

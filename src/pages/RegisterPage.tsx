@@ -104,6 +104,10 @@ function RegisterPage() {
             <Button type="submit" variant="primary">
               Đăng ký
             </Button>
+            <span className="mx-2">hoặc</span>
+            <Button variant="secondary" onClick={() => navigate("/login")}>
+              Đăng nhập
+            </Button>
           </Form.Group>
         </Form>
       </Col>

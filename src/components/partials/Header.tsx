@@ -23,16 +23,9 @@ function Header() {
   const navigate: NavigateFunction = useNavigate();
 
   const handleLogout = (): void => {
-    auth
-      .logoutApi()
-      .then((response: any) => {
-        dispatch(logoutAction(response.token));
-
-        navigate("/login");
-      })
-      .catch((error) => {
-        alert(error.response.statusText);
-      });
+    navigate("/login");
+    localStorage.removeItem("Bearer_Token");
+    localStorage.removeItem("reduxState");
   };
 
   return (
@@ -44,10 +37,7 @@ function Header() {
       >
         <Container fluid>
           <Navbar.Brand>
-            <Link
-              to={"/home"}
-              style={{ textDecoration: "none", color: "black" }}
-            >
+            <Link to={"/"} style={{ textDecoration: "none", color: "black" }}>
               Shopping Now.
             </Link>
           </Navbar.Brand>
@@ -60,7 +50,7 @@ function Header() {
             >
               <Nav.Link>
                 <Link
-                  to={"/home"}
+                  to={"/"}
                   style={{ textDecoration: "none", color: "black" }}
                 >
                   Home

@@ -14,7 +14,7 @@ axiosInstance.defaults.headers.common = {
 
 axiosInstance.interceptors.request.use(
   (config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
-    config.headers["X-API-Key"] = getAccessToken();
+    config.headers.Authorization = AUTHORIZATION_PREFIX + getAccessToken();
 
     return config;
   }

@@ -16,14 +16,14 @@ interface Product {
   updated_at: string;
 }
 
-const getRows = (products: any) => {
+const getRows = (products: Product[]) => {
   let rows = [];
   let row = [];
 
   for (const product of products) {
     row.push(product);
 
-    if (row.length === 3) {
+    if (row.length == 3) {
       rows.push(row);
       row = [];
     }
@@ -51,16 +51,16 @@ function ProductList() {
   const fetchProducts = () => {
     productApi
       .searchProducts({
-        name: keyword,
+        keyword: keyword,
         page: page,
         limit: 9,
       })
-      .then((data) => {
-        setProducts(data.records);
-        setTotal(data.total);
+      .then((data: any) => {
+        setProducts(data[0]);
+        setTotal(data[1]);
       })
       .catch((error) => {
-        if (error.response && error.response.status === 401) {
+        if (error.response && error.response.status == 401) {
           alert(error.response.statusText);
           navigate("/login");
         } else {
@@ -97,12 +97,12 @@ function ProductList() {
       </Form>
 
       <div>
-        {rows.map((row:any, index:number) => {
+        {rows.map((row: [], index: number) => {
           return (
             <Row key={index}>
               {row.map((product: any, index: number) => {
                 return (
-                  <Col key={index}>
+                  <Col key={index} md={4}>
                     <ProductDetail product={product} />
                   </Col>
                 );

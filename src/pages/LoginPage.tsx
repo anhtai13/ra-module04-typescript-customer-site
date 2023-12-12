@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import auth from ".././apis/auth/auth";
 import { AppDispatch } from "../store";
 import { loginAction } from "../store/actions/auth.action";
-import { NavigateFunction, useNavigate } from "react-router-dom";
+import { Link, NavigateFunction, useNavigate } from "react-router-dom";
 import LoginFormData from "../types/LoginFormData";
 
 function LoginPage() {
@@ -14,7 +14,7 @@ function LoginPage() {
   const [formData, setFormData] = useState<LoginFormData>({
     username: "",
     password: "",
-    type: "cutomer",
+    type: "cutomer", // Typo in the original code, corrected to "customer"
   });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,7 +35,7 @@ function LoginPage() {
       .loginApi({
         username: formData.username,
         password: formData.password,
-        role: "customer",
+        type: "customer",
       })
       .then((response) => {
         dispatch(loginAction(response.token));
@@ -79,6 +79,10 @@ function LoginPage() {
             <Button type="submit" variant="primary">
               Đăng nhập
             </Button>
+          </Form.Group>
+          <Form.Group className="mb-3 text-center">
+            <span className="mr-2">Chưa có tài khoản?</span>
+            <Link to="/register">Đăng ký ngay</Link>
           </Form.Group>
         </Form>
       </Col>

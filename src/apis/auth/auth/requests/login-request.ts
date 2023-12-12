@@ -3,5 +3,5 @@ export interface LoginRequest {
 
   password: string;
 
-  role: string;
+  type: string;
 }

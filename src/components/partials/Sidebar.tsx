@@ -17,6 +17,12 @@ function Sidebar() {
             className="d-block caroselImg"
             src="https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/460984/item/vngoods_68_460984.jpg?width=750"
             alt="First slide"
+            style={{
+              width: "100%",
+              height: "700px",
+              objectFit: "cover",
+              objectPosition: "100% 50%",
+            }}
           />
           <Carousel.Caption>
             <h3>First slide label</h3>
@@ -28,6 +34,12 @@ function Sidebar() {
             className="d-block caroselImg"
             src="https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/455365/item/vngoods_63_455365.jpg?width=750"
             alt="Second slide"
+            style={{
+              width: "100%",
+              height: "700px",
+              objectFit: "cover",
+              objectPosition: "100% 50%",
+            }}
           />
 
           <Carousel.Caption>
@@ -41,6 +53,12 @@ function Sidebar() {
             width={"100%"}
             src="https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/427917/item/vngoods_07_427917.jpg?width=750"
             alt="Third slide"
+            style={{
+              width: "100%",
+              height: "700px",
+              objectFit: "cover",
+              objectPosition: "center",
+            }}
           />
           <Carousel.Caption>
             <h3>Third slide label</h3>
@@ -54,6 +72,12 @@ function Sidebar() {
             className="d-block caroselImg "
             src="https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/455365/item/vngoods_63_455365.jpg?width=750"
             alt="Fourth slide"
+            style={{
+              width: "100%",
+              height: "700px",
+              objectFit: "cover",
+              objectPosition: "100% 50%",
+            }}
           />
           <Carousel.Caption>
             <h3>Fourth slide label</h3>
@@ -67,6 +91,12 @@ function Sidebar() {
             className="d-block caroselImg "
             src="https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/422992/item/vngoods_56_422992.jpg?width=750"
             alt="Fifth slide"
+            style={{
+              width: "100%",
+              height: "700px",
+              objectFit: "cover",
+              objectPosition: "100% 50%",
+            }}
           />
           <Carousel.Caption>
             <h3>Fifth slide label</h3>
@@ -79,6 +109,12 @@ function Sidebar() {
               className="d-block caroselImg "
               src="https://image.uniqlo.com/UQ/ST3/vn/imagesgoods/456779/item/vngoods_06_456779.jpg?width=750"
               alt="Sixth slide"
+              style={{
+                width: "100%",
+                height: "700px",
+                objectFit: "cover",
+                objectPosition: "100% 50%",
+              }}
             />
             <Carousel.Caption>
               <h3>Sixth slide label</h3>

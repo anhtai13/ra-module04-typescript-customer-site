@@ -8,7 +8,7 @@ export interface ProductDetailProps {
   product: {
     image: string; // Cập nhật kiểu dữ liệu ở đây
     name: string;
-    unit_price: number;
+    unitPrice: number;
     description: string;
   };
 }
@@ -46,9 +46,21 @@ function ProductDetail({ product }: ProductDetailProps) {
   return (
     <div>
       <Card>
-        <Card.Img variant="top" src={product.image} />
+        <Card.Img
+          variant="top"
+          src={product.image}
+          style={{
+            width: "100%",
+            height: "400px",
+            objectFit: "cover",
+            objectPosition: "center",
+          }}
+        />
         <Card.Body>
-          <Badge bg="secondary">{product.unit_price.toLocaleString()} đ</Badge>
+          <Badge bg="secondary">
+            {Number(product.unitPrice).toLocaleString()} đ
+          </Badge>
+          <Card.Text>{product.name}</Card.Text>
           <Card.Text>{product.description}</Card.Text>
           <Stack direction="horizontal" gap={3}>
             <Form.Control

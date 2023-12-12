@@ -11,6 +11,7 @@ import {
   deleteFromCart,
 } from "../../store/actions/customerCart.action";
 import orderApi from "../../apis/order/order.api";
+import userApi from "../../apis/user.api";
 
 function CartList() {
   const dispatch = useDispatch();
@@ -41,21 +42,26 @@ function CartList() {
   };
 
   const handleCheckOut = () => {
+    const data = {
+      serial_number: Math.floor(Math.random() * 100),
+      user_id: 1,
+      order_at: new Date().toISOString(),
+      total_price: total,
+      status: 1,
+    };
     const isCheckout = window.confirm(
       "Bạn có chắc chắn muốn đặt đơn hàng này ?"
     );
     if (isCheckout) {
       orderApi
-        .createOrder({
-          cart: cart,
-        })
+        .createOrder(data)
         .then(() => {
           alert("Đã đặt hàng thành công");
           dispatch(checkOut());
         })
         .catch((error) => {
           console.log("error", error);
-          if (error.response.status === 401) {
+          if (error.response.status == 401) {
             alert(error.response.statusText);
             navigate("/login");
           } else {
@@ -82,26 +88,24 @@ function CartList() {
           <tbody>
             {cart.map((item, index) => {
               return (
-                <tr key={item.product_id}>
+                <tr key={item.id}>
                   <td>{index + 1}</td>
                   <td>{item.name}</td>
-                  <td>{item.unit_price.toLocaleString()} đ</td>
+                  <td>{Number(item.unitPrice).toLocaleString()} đ</td>
                   <td>
                     <Form.Control
                       type="number"
                       value={item.quantity}
                       onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                        handleChange(e, item.product_id)
+                        handleChange(e, item.id)
                       }
                     />
                   </td>
-                  <td>
-                    {(item.unit_price * item.quantity).toLocaleString()} đ
-                  </td>
+                  <td>{(item.unitPrice * item.quantity).toLocaleString()} đ</td>
                   <td>
                     <Button
                       variant="danger"
-                      onClick={() => handleDelete(item.product_id)}
+                      onClick={() => handleDelete(item.id)}
                     >
                       Delete
                     </Button>

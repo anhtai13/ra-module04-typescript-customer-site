@@ -2,14 +2,14 @@ import { createReducer } from "@reduxjs/toolkit";
 
 interface CartItem {
   name: string;
-  product_id: string;
-  unit_price: number;
+  id: string;
+  unitPrice: number;
   quantity: number;
   subTotal: number;
 }
 
 interface OrderItem {
-  product_id: string;
+  id: string;
 }
 
 interface State {
@@ -23,7 +23,7 @@ interface State {
 const calculateTotal = (cart: CartItem[]): number => {
   let total = 0;
   for (let item of cart) {
-    total = total + item.unit_price * item.quantity;
+    total = total + item.unitPrice * item.quantity;
   }
   return total;
 };
@@ -34,12 +34,12 @@ const customerCartReducer = createReducer<State>(
     ADD_TO_CART: (state, action) => {
       let isExist = false;
       let addCart = state.cart.map((item) => {
-        if (item.product_id === action.payload.product_id) {
+        if (item.id == action.payload.id) {
           isExist = true;
           return {
             ...item,
             quantity: item.quantity + action.payload.quantity,
-            subTotal: item.unit_price * item.quantity,
+            subTotal: item.unitPrice * item.quantity,
           };
         }
         return item;
@@ -50,7 +50,7 @@ const customerCartReducer = createReducer<State>(
           ...addCart,
           {
             ...action.payload,
-            subTotal: action.payload.unit_price * action.payload.quantity,
+            subTotal: action.payload.unitPrice * action.payload.quantity,
           },
         ];
       }
@@ -59,9 +59,7 @@ const customerCartReducer = createReducer<State>(
     },
 
     DELETE_TO_CART: (state, action) => {
-      const newCart = state.cart.filter(
-        (item) => item.product_id !== action.payload
-      );
+      const newCart = state.cart.filter((item) => item.id != action.payload);
       return {
         ...state,
         cart: newCart,
@@ -72,11 +70,11 @@ const customerCartReducer = createReducer<State>(
 
     CHANGE_QUANTITY: (state, action) => {
       let cart = state.cart.map((item) => {
-        if (item.product_id === action.payload.product_id) {
+        if (item.id == action.payload.productId) {
           return {
             ...item,
             quantity: action.payload.quantity,
-            subTotal: item.unit_price * item.quantity,
+            subTotal: item.unitPrice * item.quantity,
           };
         }
         return item;
@@ -106,9 +104,7 @@ const customerCartReducer = createReducer<State>(
     },
 
     DELETE_FROM_ORDER: (state, action) => {
-      const newOrder = state.order.filter(
-        (item) => item.product_id !== action.payload
-      );
+      const newOrder = state.order.filter((item) => item.id != action.payload);
       return {
         ...state,
         order: newOrder,
