@@ -42,19 +42,12 @@ function CartList() {
   };
 
   const handleCheckOut = () => {
-    const data = {
-      serial_number: Math.floor(Math.random() * 100),
-      user_id: 1,
-      order_at: new Date().toISOString(),
-      total_price: total,
-      status: 1,
-    };
     const isCheckout = window.confirm(
       "Bạn có chắc chắn muốn đặt đơn hàng này ?"
     );
     if (isCheckout) {
       orderApi
-        .createOrder(data)
+        .createOrder({ cart })
         .then(() => {
           alert("Đã đặt hàng thành công");
           dispatch(checkOut());
